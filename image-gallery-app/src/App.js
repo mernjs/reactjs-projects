@@ -17,8 +17,8 @@ const webcam = {
 
 const App = () => {
 
-    const [picture, setPicture] = useState('')
-    const [images, setImages] = useState('')
+    const [selectedImg, setSelectedImg] = useState('')
+    const [gallery, setGallery] = useState('')
     const [permissionError, setPermissionError] = useState('')
 
     const webcamRef = useRef(null)
@@ -36,23 +36,23 @@ const App = () => {
     const capture = () => {
         const audio = document.getElementById("audio")
         const pictureSrc = webcamRef.current.getScreenshot()
-        setPicture(pictureSrc)
+        setSelectedImg(pictureSrc)
         audio.play()
     }
 
     const reset = () => {
-        setPicture("")
+        setSelectedImg("")
     }
 
     const save = () => {
-        setImages([picture, ...images])
-        setPicture('')
+        setGallery([picture, ...images])
+        setSelectedImg('')
     }
 
     //upload photo from gallery
     const handleImageUpload = (e) => {
         let reader = new FileReader();
-        reader.onloadend = () => setImages([reader.result, ...images])
+        reader.onloadend = () => setGallery([reader.result, ...images])
         reader.readAsDataURL(e.target.files[0])
     }
 
@@ -78,7 +78,7 @@ const App = () => {
                     onChange={handleImageUpload}
                 />
 
-                {(picture === '' && permissionError === '') &&
+                {(selectedImg === '' && permissionError === '') &&
                     <div className='row text-center'>
                         <div className='col-sm-12'>
                             <Webcam
@@ -97,10 +97,10 @@ const App = () => {
                     </div>
                 }
 
-                {picture !== '' &&
+                {selectedImg !== '' &&
                     <div className='row text-center'>
                         <div className='col-sm-12'>
-                            <img alt="preview" style={webcam} src={picture} />
+                            <img alt="preview" style={webcam} src={selectedImg} />
                         </div>
                         <div className='col-sm-12' style={{ marginTop: '5px' }}>
                             <button onClick={save} className='btn btn-primary'> Save </button> &nbsp;&nbsp;&nbsp;
@@ -111,9 +111,9 @@ const App = () => {
 
                 <br /> <br /> <br />
                 <div className='row'>
-                    {images?.map((image, index) => {
+                    {gallery?.map((item, index) => {
                         return <div key={index} style={{ marginBottom: '20px' }} className='col-sm-4'>
-                            <img alt='image' style={{ width: '240px', height: '240px' }} className='img img-thumbnail' src={image} />
+                            <img alt='image' style={{ width: '240px', height: '240px' }} className='img img-thumbnail' src={item} />
                         </div>
                     })}
                 </div>
