@@ -23,7 +23,6 @@ const App = () => {
 
     const webcamRef = useRef(null)
 
-    //Take browser webcam permission
     const requestCameraPermission = () => {
         navigator.mediaDevices.getUserMedia({ video: true }).then(mediaStream => {
             console.log("Camera Permission Allowed Successfully")
@@ -32,7 +31,6 @@ const App = () => {
         });
     }
 
-    //Take photo from webcam
     const capture = () => {
         const audio = document.getElementById("audio")
         const base64Image = webcamRef.current.getScreenshot()
@@ -49,7 +47,6 @@ const App = () => {
         setSelectedImg('')
     }
 
-    //upload photo from gallery
     const handleImageUpload = (e) => {
         let reader = new FileReader();
         reader.onloadend = () => setGallery([reader.result, ...gallery])
@@ -113,7 +110,7 @@ const App = () => {
                 <div className='row'>
                     {gallery?.map((item, index) => {
                         return <div key={index} style={{ marginBottom: '20px' }} className='col-sm-4'>
-                            <img alt='image' style={{ width: '240px', height: '240px' }} className='img img-thumbnail' src={item} />
+                            <img alt='gallery' style={{ width: '240px', height: '240px' }} className='img img-thumbnail' src={item} />
                         </div>
                     })}
                 </div>
