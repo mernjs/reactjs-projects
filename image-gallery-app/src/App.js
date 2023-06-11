@@ -35,8 +35,8 @@ const App = () => {
     //Take photo from webcam
     const capture = () => {
         const audio = document.getElementById("audio")
-        const pictureSrc = webcamRef.current.getScreenshot()
-        setSelectedImg(pictureSrc)
+        const base64Image = webcamRef.current.getScreenshot()
+        setSelectedImg(base64Image)
         audio.play()
     }
 
@@ -45,14 +45,14 @@ const App = () => {
     }
 
     const save = () => {
-        setGallery([picture, ...images])
+        setGallery([selectedImg, ...gallery])
         setSelectedImg('')
     }
 
     //upload photo from gallery
     const handleImageUpload = (e) => {
         let reader = new FileReader();
-        reader.onloadend = () => setGallery([reader.result, ...images])
+        reader.onloadend = () => setGallery([reader.result, ...gallery])
         reader.readAsDataURL(e.target.files[0])
     }
 
