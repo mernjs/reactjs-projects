@@ -108,7 +108,7 @@ const App = () => {
 
                 <br /> <br /> <br />
                 <div className='row'>
-                    {gallery?.map((item, index) => {
+                    {gallery !== '' && gallery.map((item, index) => {
                         return <div key={index} style={{ marginBottom: '20px' }} className='col-sm-4'>
                             <img alt='gallery' style={{ width: '240px', height: '240px' }} className='img img-thumbnail' src={item} />
                         </div>
