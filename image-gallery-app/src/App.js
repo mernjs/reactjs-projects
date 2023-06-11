@@ -78,7 +78,7 @@ const App = () => {
                     onChange={handleImageUpload}
                 />
 
-                {(picture == '' && permissionError == '') &&
+                {(picture === '' && permissionError === '') &&
                     <div className='row text-center'>
                         <div className='col-sm-12'>
                             <Webcam
