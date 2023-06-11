@@ -18,7 +18,7 @@ const webcam = {
 const App = () => {
 
     const [picture, setPicture] = useState('')
-    const [images, setImages] = useState([])
+    const [images, setImages] = useState('')
     const [permissionError, setPermissionError] = useState('')
 
     const webcamRef = useRef(null)
@@ -100,7 +100,7 @@ const App = () => {
                 {picture !== '' &&
                     <div className='row text-center'>
                         <div className='col-sm-12'>
-                            <img style={webcam} src={picture} />
+                            <img alt="preview" style={webcam} src={picture} />
                         </div>
                         <div className='col-sm-12' style={{ marginTop: '5px' }}>
                             <button onClick={save} className='btn btn-primary'> Save </button> &nbsp;&nbsp;&nbsp;
@@ -113,7 +113,7 @@ const App = () => {
                 <div className='row'>
                     {images?.map((image, index) => {
                         return <div key={index} style={{ marginBottom: '20px' }} className='col-sm-4'>
-                            <img style={{ width: '240px', height: '240px' }} className='img img-thumbnail' src={image} />
+                            <img alt='image' style={{ width: '240px', height: '240px' }} className='img img-thumbnail' src={image} />
                         </div>
                     })}
                 </div>
